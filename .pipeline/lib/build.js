@@ -4,7 +4,7 @@ const path = require('path');
 
 
 module.exports = (settings)=>{
-  const oc=new OpenShiftClientX({'namespace':'csnr-devops-lab-tools'});
+  const oc=new OpenShiftClientX({'namespace':'devex-bcgov-dap-tools'});
   var templateFile = path.resolve(__dirname, '../../openshift/_python36.bc.json')
 
   var objects = oc.process(oc.toFileUrl(templateFile), {
