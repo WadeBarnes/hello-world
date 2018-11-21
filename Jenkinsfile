@@ -2,7 +2,6 @@ pipeline {
     agent none
     stages {
         stage('Build') {
-            agent { label 'build' }
             steps {
                 echo "Aborting all running jobs ..."
                 script {
@@ -13,7 +12,6 @@ pipeline {
             }
         }
         stage('Deploy (DEV)') {
-            agent { label 'deploy' }
             steps {
                 echo "Deploying ..."
                 sh ".pipeline/cli.sh deploy --pr=${CHANGE_ID} --env=dev"
