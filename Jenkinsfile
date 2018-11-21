@@ -3,10 +3,6 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                echo "Aborting all running jobs ..."
-                script {
-                    abortAllPreviousBuildInProgress(currentBuild)
-                }
                 echo "Building ..."
                 sh ".pipeline/cli.sh build --pr=${CHANGE_ID}"
             }
