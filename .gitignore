@@ -26,3 +26,4 @@ hs_err_pid*
 pipeline/.node/
 node_modules
 output
+.node

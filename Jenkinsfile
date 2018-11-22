@@ -23,7 +23,7 @@ pipeline {
             agent { label 'deploy' }
             steps {
                 echo "Deploying ..."
-                sh "pipeline/cli.sh deploy --pr=${CHANGE_ID} --env=dev"
+                sh "pipeline-cli deploy --pr=${CHANGE_ID} --env=dev"
             }
         }
         stage('Deploy (TEST)') {
@@ -34,7 +34,7 @@ pipeline {
             }
             steps {
                 echo "Deploying ..."
-                sh "pipeline/cli.sh deploy --pr=${CHANGE_ID} --env=test"
+                sh "pipeline-cli deploy --pr=${CHANGE_ID} --env=test"
             }
         }
         stage('Deploy (PROD)') {
@@ -45,7 +45,7 @@ pipeline {
             }
             steps {
                 echo "Deploying ..."
-                sh "pipeline/cli.sh deploy --pr=${CHANGE_ID} --env=prod"
+                sh "pipeline-cli deploy --pr=${CHANGE_ID} --env=prod"
             }
         }
     }
