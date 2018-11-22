@@ -2,7 +2,7 @@ app {
     name = "${opt.'name'?:'jenkins'}"
     namespaces { //can't call environments :(
         'build'{
-            namespace = "${opt.'namespace'?:'csnr-devops-lab-tools'}"
+            namespace = "${opt.'namespace'?:'devex-bcgov-dap-tools'}"
             disposable = true
         }
         'dev' {

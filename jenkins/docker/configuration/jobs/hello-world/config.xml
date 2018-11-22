@@ -31,7 +31,7 @@
         <source class="org.jenkinsci.plugins.github_branch_source.GitHubSCMSource" plugin="github-branch-source@2.3.6">
           <id>c4c35db7-45fa-431b-a7ac-d2211056db57</id>
           <credentialsId>github-account</credentialsId>
-          <repoOwner>cvarjao-o</repoOwner>
+          <repoOwner>WadeBarnes</repoOwner>
           <repository>hello-world</repository>
           <traits>
             <org.jenkinsci.plugins.github__branch__source.OriginPullRequestDiscoveryTrait>
