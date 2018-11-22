@@ -3,15 +3,25 @@ pipeline {
     stages {
         stage('Build') {
             steps {
+                echo "Aborting all running jobs ..."
+                script {
+                    abortAllPreviousBuildInProgress(currentBuild)
+                }
+                echo "BRANCH_NAME:${env.BRANCH_NAME}\nCHANGE_ID:${env.CHANGE_ID}\nCHANGE_TARGET:${env.CHANGE_TARGET}"
                 echo "Building ..."
-                sh ".pipeline/cli.sh build --pr=${CHANGE_ID}"
+                sh ".pipeline/pipeline-cli build --pr=${CHANGE_ID} --config=openshift/config.groovy"
             }
         }
-        stage('Deploy (DEV)') {
+        stage('Deploy (PROD)') {
+            agent { label 'deploy' }
+            input {
+                message "Should we continue with deployment to PROD?"
+                ok "Yes!"
+            }
             steps {
                 echo "Deploying ..."
-                sh ".pipeline/cli.sh deploy --pr=${CHANGE_ID} --env=dev"
-            }
+                sh ".jenkins/pipeline-cli deploy --config=openshift/config.groovy --pr=${CHANGE_ID} --env=prod"
+            }    
         }
     }
 }

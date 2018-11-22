@@ -64,9 +64,11 @@ app {
 
         templates = [
                 [
-                    'file':'cicd/jenkins-basic/openshift/deploy.yaml',
+                    'file':'openshift/_python36.dc.json',
                     'params':[
-                        'NAME': app.deployment.name
+                        'NAME': app.deployment.name,
+                        'SUFFIX': app.deployment.suffix,
+                        'VERSION': app.deployment.version
                     ]
                 ]
         ]
@@ -95,7 +97,7 @@ environments {
                     name ="prod"
                     id = "pr-${opt.'pr'}"
                 }
-                suffix = ''
+                suffix = '-prod'
                 id = "${app.name}${vars.deployment.suffix}"
                 name = "${opt.'deployment-name'?:app.name}"
                 namespace = app.namespaces[env.name].namespace
