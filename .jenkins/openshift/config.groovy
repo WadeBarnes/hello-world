@@ -3,7 +3,7 @@ app {
     name = 'jenkins-cvarjao'
     namespaces {
         'build'{
-            namespace = 'csnr-devops-lab-tools'
+            namespace = 'devex-bcgov-dap-tools'
             disposable = true
         }
         'dev' {
