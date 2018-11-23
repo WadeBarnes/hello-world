@@ -87,7 +87,7 @@
               "type": "ConfigChange"
             }
           ],
-          "replicas": 1,
+          "replicas": 2,
           "test": false,
           "selector": {
             "name": "${NAME}${SUFFIX}"
@@ -115,12 +115,12 @@
                   ],
                   "resources": {
                     "limits": {
-                      "cpu": "250m",
-                      "memory": "768Mi"
+                      "cpu": "80m",
+                      "memory": "96Mi"
                     },
                     "requests": {
-                      "cpu": "200m",
-                      "memory": "512Mi"
+                      "cpu": "60m",
+                      "memory": "64Mi"
                     }
                   },
                   "terminationMessagePath": "/dev/termination-log",
@@ -133,6 +133,25 @@
               "securityContext": {}
             }
           }
+        }
+      },
+      {
+        "apiVersion": "autoscaling/v1",
+        "kind": "HorizontalPodAutoscaler",
+        "metadata": {
+          "creationTimestamp": null,
+          "labels": null,
+          "name": "${NAME}${SUFFIX}"
+        },
+        "spec": {
+          "maxReplicas": 5,
+          "minReplicas": 2,
+          "scaleTargetRef": {
+            "apiVersion": "v1",
+            "kind": "DeploymentConfig",
+            "name": "${NAME}${SUFFIX}"
+          },
+          "targetCPUUtilizationPercentage": 85
         }
       },
       {

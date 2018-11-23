@@ -169,6 +169,9 @@
           },
           "postCommit": {},
           "nodeSelector": null
+        },
+        "status": {
+          "lastVersion": 0
         }
       },
       {
@@ -234,6 +237,9 @@
             }
           },
           "nodeSelector": null
+        },
+        "status": {
+          "lastVersion": 0
         }
       }
     ]

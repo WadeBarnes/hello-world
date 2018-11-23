@@ -3,35 +3,29 @@ pipeline {
     options {
         disableResume()
     }
-    environment {
-        OCP_PIPELINE_CLI_URL = 'https://raw.githubusercontent.com/BCDevOps/ocp-cd-pipeline/03043cc11fc9ff0228f50981b80bf82f84061e2e/src/main/resources/pipeline-cli'
-        OCP_PIPELINE_VERSION = '0.0.4'
-    }
     stages {
         stage('Build') {
             agent { label 'build' }
             steps {
-                script {
-                    def hasChangesInPath = sh(script:"[ \"\$(git diff --name-only HEAD~1..HEAD | grep -v '^.tools/' | wc -l)\" -eq 0 ] && exit 999 || exit 0", returnStatus: true) == 0
-                    if (!hasChangesInPath){
-                        currentBuild.rawBuild.delete()
-                        error("No changes detected in the path")
-                    }
-                }
                 echo "Aborting all running jobs ..."
                 script {
                     abortAllPreviousBuildInProgress(currentBuild)
                 }
+                echo "BRANCH_NAME:${env.BRANCH_NAME}\nCHANGE_ID:${env.CHANGE_ID}\nCHANGE_TARGET:${env.CHANGE_TARGET}"
                 echo "Building ..."
-                sh "curl -sSL '${OCP_PIPELINE_CLI_URL}' | bash -s build --config=.pipeline/config.groovy --pr=${CHANGE_ID}"
+                sh ".pipeline/pipeline-cli build --pr=${CHANGE_ID} --config=openshift/config.groovy"
             }
         }
-        stage('Deploy (DEV)') {
+        stage('Deploy (PROD)') {
             agent { label 'deploy' }
+            input {
+                message "Should we continue with deployment to PROD?"
+                ok "Yes!"
+            }
             steps {
                 echo "Deploying ..."
-                sh "curl -sSL '${OCP_PIPELINE_CLI_URL}' | bash -s deploy --config=.pipeline/config.groovy --pr=${CHANGE_ID} --env=dev"
-            }
+                sh ".pipeline/pipeline-cli deploy --config=openshift/config.groovy --pr=${CHANGE_ID} --env=prod"
+            }    
         }
     }
 }

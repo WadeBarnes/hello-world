@@ -1,0 +1,22 @@
+{
+  "name": "pipeline",
+  "version": "1.0.0",
+  "description": "This a pipeliene script",
+  "scripts": {
+    "fail": "echo \"Error: no test specified\" && exit 1",
+    "build": "node build.js",
+    "clean": "node clean.js",
+    "deploy": "node deploy.js",
+    "pipeline": "node pipeline.js",
+    "version": "echo \"node@$(node --version) ($(which node))\" && echo \"npm@$(npm --version) ($(which npm))\" && npm ls"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cvarjao-o/hello-world.git"
+  },
+  "author": "",
+  "license": "Apache-2.0",
+  "dependencies": {
+    "pipeline-cli": "git+https://github.com/cvarjao-o/pipeline-cli.git#8188139a1ef5ed5fc10c7232ed9c6a7abc9b3645"
+  }
+}

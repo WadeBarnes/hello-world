@@ -1,0 +1,11 @@
+approvers:
+  - cvarjao
+reviewers:
+  - cvarjao
+collaborators:
+  - cvarjao
+
+
+#READ = collaborators
+#WRITE = reviewers
+#ADMIN = approvers
