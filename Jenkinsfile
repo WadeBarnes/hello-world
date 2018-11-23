@@ -24,7 +24,7 @@ pipeline {
             }
             steps {
                 echo "Deploying ..."
-                sh ".jenkins/pipeline-cli deploy --config=openshift/config.groovy --pr=${CHANGE_ID} --env=prod"
+                sh ".pipeline/pipeline-cli deploy --config=openshift/config.groovy --pr=${CHANGE_ID} --env=prod"
             }    
         }
     }
