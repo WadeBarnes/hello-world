@@ -49,7 +49,7 @@
         {
             "name": "SOURCE_CONTEXT_DIR",
             "required": true,
-            "value": ".jenkins/docker"
+            "value": ".tools/jenkins/docker"
         }
     ],
     "objects": [
