@@ -2,19 +2,19 @@ app {
     name = 'myapp'
     namespaces { //can't call environments :(
         'build'{
-            namespace = System.getenv("NAMESPACE_BUILD")?:'csnr-devops-lab-tools'
+            namespace = System.getenv("NAMESPACE_BUILD")?:'devex-bcgov-dap-tools'
             disposable = true
         }
         'dev' {
-            namespace = System.getenv("NAMESPACE_DEV")?:'csnr-devops-lab-tools'
+            namespace = System.getenv("NAMESPACE_DEV")?:'devex-bcgov-dap-tools'
             disposable = true
         }
         'test' {
-            namespace = System.getenv("NAMESPACE_TEST")?:'csnr-devops-lab-tools'
+            namespace = System.getenv("NAMESPACE_TEST")?:'devex-bcgov-dap-tools'
             disposable = false
         }
         'prod' {
-            namespace = System.getenv("NAMESPACE_PROD")?:'csnr-devops-lab-tools'
+            namespace = System.getenv("NAMESPACE_PROD")?:'devex-bcgov-dap-tools'
             disposable = false
         }
     }
